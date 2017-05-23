@@ -35,12 +35,4 @@ public class BibliotecaAppTest {
         assertEquals("Welcome to Biblioteca!",outContent.toString());
     }
 
-    @Test
-    public void generateBookList() throws Exception {
-        BibliotecaApp bibliotecaApp = new BibliotecaApp();
-        List<Book> bookList = bibliotecaApp.generateBookList();
-        List<Book> sampleBookList = new ArrayList<Book>();
-        Assert.assertEquals(bookList, sampleBookList);
-    }
-
 }

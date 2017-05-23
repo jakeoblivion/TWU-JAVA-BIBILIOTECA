@@ -12,9 +12,4 @@ public class BibliotecaApp {
         System.out.print("Welcome to Biblioteca!");
     }
 
-    public List<Book> generateBookList() {
-        List<Book> bookList = new ArrayList<Book>();
-        return bookList;
-    }
-
 }
