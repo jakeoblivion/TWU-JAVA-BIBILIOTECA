@@ -1,25 +1,21 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Library {
 
 
-    public List<Book> bookList = new ArrayList(Arrays.asList(
-            new Book("Harry Potter", "JK Rowling",2000,true),
-            new Book("Harry Potter 2", "JK Rowling",2001,true),
-            new Book("Harry Potter 3", "JK Rowling",2002,false),
-            new Book("Lord of the Rings","JR Tolkien", 2000, true)
+    public HashMap<String, Book> bookList = new HashMap<String,Book>(){{
+            this.put("Harry Potter", new Book("Harry Potter", "JK Rowling", 2000, true));
+            this.put("Lord of the Rings", new Book("Lord of the Rings", "JR Tolkien", 2001, true));
+            this.put("Da Vinci Code", new Book("Da Vinci Code", "Dan Brown", 2003, false));
+    }};
 
-    ));
-
-    public List<Book> getAvailableBookList() {
-        List<Book> availableBookList = new ArrayList<Book>();
-        for(Book book : bookList) {
+    public HashMap<String, Book> getAvailableBookList() {
+        HashMap<String, Book> availableBookList = new HashMap<String, Book>();
+        for(Book book : bookList.values()) {
             if (book.available) {
-                availableBookList.add(book);
+                availableBookList.put(book.title, book);
             }
         }
         return availableBookList;
@@ -34,12 +30,12 @@ public class Library {
         }
     }
 
-/*    public void returnBook(Book book) {
-        if(getAvailableBookList().contains(book)) {
+    public void returnBook(Book book) {
+        if(getAvailableBookList().containsKey(book.title)) {
             book.available = true;
             System.out.println("Thank you for returning the book.");
         } else {
-            System.out.println("That is not a valid book to return. Please return it to the correct library or check your spelling.");
+            System.out.println("That is not a valid book to return.");
         }
-    }*/
+    }
 }

@@ -2,13 +2,9 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.hasItem;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class LibraryTest {
 
@@ -16,23 +12,28 @@ public class LibraryTest {
 
     @Test
     public void getAvailableBookListShouldReturnHarrypotter() throws Exception {
-        assertThat(library.getAvailableBookList(), hasItem(new Book("Harry Potter", "JK Rowling",2000,true)));
+        assertTrue(library.getAvailableBookList().containsKey("Harry Potter"));
     }
 
     @Test
-    public void checkoutBook() throws Exception {
+    public void getAvailableBookListShouldntReturnDaVinciCode() throws Exception {
+        assertFalse(library.getAvailableBookList().containsKey("Da Vinci Code"));
+    }
+
+    @Test
+    public void checkoutBookShouldMakeAvailabilityFalse() throws Exception {
         Book book = new Book("Lord of the Rings","JR Tolkien", 2000, true);
         library.checkoutBook(book);
 
         assertEquals(book.available, false);
     }
 
-/*    @Test
-    public void returnBook() throws Exception {
+    @Test
+    public void returnBookShouldMakeAvailabilityTrue() throws Exception {
         Book book = new Book("Lord of the Rings","JR Tolkien", 2000, false);
         library.returnBook(book);
 
         assertEquals(book.available, true);
-    }*/
+    }
 
 }

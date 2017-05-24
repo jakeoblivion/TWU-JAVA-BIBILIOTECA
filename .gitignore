@@ -1,5 +1,5 @@
-lib/*
+lib/
 .idea
 .biblioteca.iml
-/out*
+out
 .idea/workspace.xml
