@@ -16,6 +16,7 @@ public class Library {
         for(Book book : bookList.values()) {
             if (book.available) {
                 availableBookList.put(book.title, book);
+                System.out.println(book.title);
             }
         }
         return availableBookList;

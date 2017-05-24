@@ -1,18 +1,13 @@
 package com.twu.biblioteca;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class BibliotecaAppTest {
 
@@ -29,10 +24,22 @@ public class BibliotecaAppTest {
     }
 
     @Test
-    public void generateWelcomeMessage() throws Exception {
+    public void displaysWelcomeMessage() throws Exception {
         BibliotecaApp bibliotecaApp = new BibliotecaApp();
         bibliotecaApp.generateWelcomeMessage();
-        assertEquals("Welcome to Biblioteca!",outContent.toString());
+        assertEquals(
+                "==========================\r\n" +
+                         "==Welcome to Biblioteca!==\r\n" +
+                         "==========================\r\n",
+                outContent.toString());
     }
+
+    @Test
+    public void quitApplicationWithMessage() throws Exception {
+        BibliotecaApp bibliotecaApp = new BibliotecaApp();
+        //bibliotecaApp.quit();
+        //assertEquals("Quiting...",outContent.toString());
+    }
+
 
 }

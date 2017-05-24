@@ -1,15 +1,26 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Menu {
-    List<String> menuOptions = new ArrayList<>();
 
-    public List<String> getMenuOptions() {
-        menuOptions.add("List Books");
-        menuOptions.add("Quit");
+    interface Command {
+        void runCommand();
+    }
+
+    Map<String, Command> menuOptions = new HashMap<>();
+
+    public Map<String, Command> generateMenuOptions(Library library){
+        menuOptions.put("List Books", library::getAvailableBookList);
+        menuOptions.put("Quit", BibliotecaApp::quit);
+        printMenuOptions();
         return menuOptions;
+    }
+
+    public void printMenuOptions() {
+        for(String menuItem : menuOptions.keySet()) {
+            System.out.println(menuItem);
+        }
     }
 
 }
