@@ -4,7 +4,6 @@ import java.util.*;
 
 public class Library {
 
-
     public HashMap<String, Book> bookList = new HashMap<String,Book>(){{
             this.put("Harry Potter", new Book("Harry Potter", "JK Rowling", 2000, true));
             this.put("Lord of the Rings", new Book("Lord of the Rings", "JR Tolkien", 2001, true));
@@ -12,11 +11,13 @@ public class Library {
     }};
 
     public HashMap<String, Book> getAvailableBookList() {
-        HashMap<String, Book> availableBookList = new HashMap<String, Book>();
+        HashMap<String, Book> availableBookList = new HashMap<>();
+        System.out.println("===== AVAILABLE BOOKS LIST =====");
+        System.out.println("================================");
         for(Book book : bookList.values()) {
             if (book.available) {
                 availableBookList.put(book.title, book);
-                System.out.println(book.title);
+                System.out.println(book.title + " | " + book.author + " | " + book.yearPublished);
             }
         }
         return availableBookList;

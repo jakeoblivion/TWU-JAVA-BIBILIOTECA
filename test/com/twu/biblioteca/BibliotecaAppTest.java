@@ -28,9 +28,9 @@ public class BibliotecaAppTest {
         BibliotecaApp bibliotecaApp = new BibliotecaApp();
         bibliotecaApp.generateWelcomeMessage();
         assertEquals(
-                "==========================\r\n" +
-                         "==Welcome to Biblioteca!==\r\n" +
-                         "==========================\r\n",
+                "################################\r\n" +
+                         "#### Welcome to Biblioteca! ####\r\n" +
+                         "################################\r\n",
                 outContent.toString());
     }
 

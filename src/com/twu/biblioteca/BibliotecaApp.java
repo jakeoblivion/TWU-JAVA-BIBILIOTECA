@@ -1,22 +1,23 @@
 package com.twu.biblioteca;
 
+import java.io.IOException;
+
 public class BibliotecaApp {
 
-    public static void main(String[] args) {
-        BibliotecaApp bibliotecaApp = new BibliotecaApp();
-        bibliotecaApp.generateWelcomeMessage();
-
-        Library library = new Library();
+    public static void main(String[] args) throws IOException {
+        BibliotecaApp.generateWelcomeMessage();
         Menu menu = new Menu();
-        menu.generateMenuOptions(library);
+        menu.generateMenuOptions(new Library());
 
-        UserInput.runCommandFromInput(menu, UserInput.readUserInput());
+        while(true) {
+            menu.selectMenuOption(UserInput.readUserInput());
+        }
     }
 
-    public void generateWelcomeMessage() {
-        System.out.println("==========================");
-        System.out.println("==Welcome to Biblioteca!==");
-        System.out.println("==========================");
+    public static void generateWelcomeMessage() {
+        System.out.println("################################");
+        System.out.println("#### Welcome to Biblioteca! ####");
+        System.out.println("################################");
     }
 
     public static void quit() {

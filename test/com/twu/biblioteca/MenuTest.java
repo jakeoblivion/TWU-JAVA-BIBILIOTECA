@@ -7,7 +7,6 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class MenuTest {
@@ -30,11 +29,21 @@ public class MenuTest {
     public void printMenuOptionsListBooksQuit() throws Exception {
         menu.generateMenuOptions(library);
         menu.printMenuOptions();
-        assertEquals("List Books\r\nQuit\r\n",outContent.toString());
+        assertTrue(outContent.toString().contains("List Books"));
+        assertTrue(outContent.toString().contains("Quit"));
     }
 
     @Test
     public void generateMenuOptionsShouldMapOptionToMethodCommand() {
         assertTrue(menu.generateMenuOptions(library).containsKey("List Books"));
     }
+
+    @Test
+    public void selectMenuOptionListBooksShouldReturnBookList() throws Exception {
+        menu.generateMenuOptions(library);
+        menu.selectMenuOption("List Books");
+        assertTrue(outContent.toString().contains("Harry Potter"));
+        assertTrue(outContent.toString().contains("Lord of the Rings"));
+    }
+
 }
