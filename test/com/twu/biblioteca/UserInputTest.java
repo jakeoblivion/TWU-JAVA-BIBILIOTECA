@@ -1,40 +1,22 @@
 package com.twu.biblioteca;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
 
 public class UserInputTest {
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    UserInput userInput = new UserInput();
 
-    @Before
-    public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-    }
-
-    @After
-    public void cleanUpStreams() {
-        System.setOut(null);
-    }
+    @Rule
+    public TextFromStandardInputStream systemIn = emptyStandardInputStream();
 
     @Test
-    public void logInputToConsole() throws Exception {
-        UserInput userInput = new UserInput();
-        //userInput.readUserInput();
-        //assertEquals("==========================\r\nPlease type in one of the above menu options: \r\n",outContent.toString());
-    }
-
-    @Test
-    public void runCommandListBooksFromInputShouldListBooks() throws Exception {
-        Menu menu = new Menu();
-        Library library = new Library();
-        menu.generateMenuOptions(library);
-        menu.menuOptions.get("List Books").runCommand();
-        assertEquals(true,outContent.toString().contains("Harry Potter\r\nLord of the Rings\r\n"));
+    public void getStringInput_ReturnsUserInputAsString() {
+        systemIn.provideText("List Books");
+        assertEquals("List Books", userInput.readUserInput());
     }
 }
+
