@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import java.util.*;
 
 public class Menu {
+    Library library = new Library();
 
     interface Command {
         void runCommand();
@@ -10,7 +11,7 @@ public class Menu {
 
     public  Map<String, Command> menuOptions = new HashMap<>();
 
-    public  Map<String, Command> generateMenuOptions(Library library){
+    public  Map<String, Command> generateMenuOptions(){
         System.out.println("--------- Menu Options ---------");
         menuOptions.put("List Books", library::getAvailableBookList);
         menuOptions.put("Quit", BibliotecaApp::quit);

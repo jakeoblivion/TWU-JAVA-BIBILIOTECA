@@ -7,7 +7,7 @@ public class BibliotecaApp {
     public static void main(String[] args) throws IOException {
         BibliotecaApp.generateWelcomeMessage();
         Menu menu = new Menu();
-        menu.generateMenuOptions(new Library());
+        menu.generateMenuOptions();
 
         while(true) {
             menu.selectMenuOption(UserInput.readUserInput());
