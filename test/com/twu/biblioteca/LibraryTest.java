@@ -21,11 +21,29 @@ public class LibraryTest {
     }
 
     @Test
+    public void getAvailableMovieListShouldReturnInception() throws Exception {
+        assertTrue(library.getAvailableMovieList().containsKey("Inception"));
+    }
+
+    @Test
+    public void getAvailableMovieListShouldntReturnIllusionist() throws Exception {
+        assertFalse(library.getAvailableMovieList().containsKey("Illusionist"));
+    }
+
+    @Test
     public void checkoutBookShouldMakeAvailabilityFalse() throws Exception {
         Book book = new Book("Lord of the Rings","JR Tolkien", 2000, true);
         library.checkoutBook(book);
 
         assertEquals(book.available, false);
+    }
+
+    @Test
+    public void checkoutMovieShouldMakeAvailabilityFalse() throws Exception {
+        Movie movie = new Movie("Inception", 2009, "Christopher Nolan", 10, true);
+        library.checkoutMovie(movie);
+
+        assertEquals(movie.available, false);
     }
 
     @Test
