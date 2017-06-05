@@ -26,23 +26,32 @@ public class MenuTest {
 
     @Test
     public void printMenuOptionsListBooksQuit() throws Exception {
-        menu.generateMenuOptions();
-        menu.printMenuOptions();
+        menu.printMenuOptions(menu.generateMenuOptions());
         assertTrue(outContent.toString().contains("List Books"));
+        assertTrue(outContent.toString().contains("List Movies"));
+        assertTrue(outContent.toString().contains("Checkout Item"));
+        assertTrue(outContent.toString().contains("Return Item"));
         assertTrue(outContent.toString().contains("Quit"));
     }
 
     @Test
     public void generateMenuOptionsShouldMapOptionToMethodCommand() {
-        assertTrue(menu.generateMenuOptions().containsKey("List Books"));
+        assertTrue(menu.generateMenuOptions().containsKey("1. List Books"));
     }
 
     @Test
     public void selectMenuOptionListBooksShouldReturnBookList() throws Exception {
         menu.generateMenuOptions();
-        menu.selectMenuOption("List Books");
+        menu.selectMenuOption("1");
         assertTrue(outContent.toString().contains("Harry Potter"));
         assertTrue(outContent.toString().contains("Lord of the Rings"));
+    }
+
+    @Test
+    public void selectMenuOptionListMoviesShouldReturnMovieList() throws Exception {
+        menu.generateMenuOptions();
+        menu.selectMenuOption("2");
+        assertTrue(outContent.toString().contains("Inception"));
     }
 
 }

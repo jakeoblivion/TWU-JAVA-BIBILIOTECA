@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class BibliotecaAppTest {
 
@@ -27,11 +28,7 @@ public class BibliotecaAppTest {
     public void displaysWelcomeMessage() throws Exception {
         BibliotecaApp bibliotecaApp = new BibliotecaApp();
         bibliotecaApp.generateWelcomeMessage();
-        assertEquals(
-                "################################\r\n" +
-                         "#### Welcome to Biblioteca! ####\r\n" +
-                         "################################\r\n",
-                outContent.toString());
+        assertTrue(outContent.toString().contains("#### Welcome to Biblioteca! ####"));
     }
 
     @Test

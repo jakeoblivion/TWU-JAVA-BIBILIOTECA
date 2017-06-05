@@ -30,7 +30,7 @@ public class Library {
 
     public HashMap<String, Movie> getAvailableMovieList() {
         HashMap<String, Movie> availableMovieList = new HashMap<>();
-        System.out.println("===== AVAILABLE BOOKS LIST =====");
+        System.out.println("===== AVAILABLE MOVIE LIST =====");
         System.out.println("================================");
         for(Movie movie : movieList.values()) {
             if (movie.available) {
@@ -41,31 +41,51 @@ public class Library {
         return availableMovieList;
     }
 
-    public void checkoutBook(Book book) {
-        if(book.available) {
-            book.available = false;
-            System.out.println("Thank you! Enjoy the book.");
+    public void checkoutItem(String libraryItem) {
+        if(checkoutBook(libraryItem)||checkoutMovie(libraryItem)) {
+            System.out.println("Thank you! Enjoy " + libraryItem);
         } else {
-            System.out.println("That book is not available.");
+            System.out.println("This item is not available.");
         }
     }
 
-    public void checkoutMovie(Movie movie) {
-        if(movie.available) {
-            movie.available = false;
-            System.out.println("Thank you! Enjoy the movie.");
+    public void returnItem(String libraryItem) {
+        if(returnBook(libraryItem)||returnMovie(libraryItem)) {
+            System.out.println("Thank you for returning " + libraryItem);
         } else {
-            System.out.println("That movie is not available.");
+            System.out.println("That is not a valid item to return.");
         }
     }
 
-
-    public void returnBook(Book book) {
-        if(getAvailableBookList().containsKey(book.title)) {
-            book.available = true;
-            System.out.println("Thank you for returning the book.");
-        } else {
-            System.out.println("That is not a valid book to return.");
+    private boolean returnBook(String libraryItem) {
+        if(bookList.containsKey(libraryItem)&&(!(bookList.get(libraryItem).available))) {
+            bookList.get(libraryItem).available = true;
+            return true;
         }
+        return false;
+    }
+
+    private boolean returnMovie(String libraryItem) {
+        if(movieList.containsKey(libraryItem)&&(!(movieList.get(libraryItem).available))) {
+            movieList.get(libraryItem).available = true;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkoutBook(String libraryItem) {
+        if(bookList.containsKey(libraryItem)&&(bookList.get(libraryItem).available)) {
+            bookList.get(libraryItem).available = false;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkoutMovie(String libraryItem) {
+        if(movieList.containsKey(libraryItem)&&(movieList.get(libraryItem).available)) {
+            movieList.get(libraryItem).available = false;
+            return true;
+        }
+        return false;
     }
 }

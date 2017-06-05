@@ -11,6 +11,7 @@ public class BibliotecaApp {
 
         while(true) {
             menu.selectMenuOption(UserInput.readUserInput());
+            menu.generateMenuOptions();
         }
     }
 

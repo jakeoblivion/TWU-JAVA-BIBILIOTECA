@@ -2,7 +2,6 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -31,27 +30,26 @@ public class LibraryTest {
     }
 
     @Test
-    public void checkoutBookShouldMakeAvailabilityFalse() throws Exception {
-        Book book = new Book("Lord of the Rings","JR Tolkien", 2000, true);
-        library.checkoutBook(book);
-
-        assertEquals(book.available, false);
+    public void checkoutItemBookShouldMakeAvailabilityFalse() throws Exception {
+        library.checkoutItem("Lord of the Rings");
+        assertFalse(library.bookList.get("Lord of the Rings").available);
     }
 
     @Test
-    public void checkoutMovieShouldMakeAvailabilityFalse() throws Exception {
-        Movie movie = new Movie("Inception", 2009, "Christopher Nolan", 10, true);
-        library.checkoutMovie(movie);
-
-        assertEquals(movie.available, false);
+    public void checkoutItemMovieShouldMakeAvailabilityFalse() throws Exception {
+        library.checkoutItem("Illusionist");
+        assertFalse(library.movieList.get("Illusionist").available);
     }
 
     @Test
-    public void returnBookShouldMakeAvailabilityTrue() throws Exception {
-        Book book = new Book("Lord of the Rings","JR Tolkien", 2000, false);
-        library.returnBook(book);
-
-        assertEquals(book.available, true);
+    public void returnItemBookShouldMakeAvailabilityTrue() throws Exception {
+        library.returnItem("Lord of the Rings");
+        assertTrue(library.bookList.get("Lord of the Rings").available);
     }
 
+    @Test
+    public void returnItemMovieShouldMakeAvailabilityTrue() throws Exception {
+        library.returnItem("Illusionist");
+        assertTrue(library.movieList.get("Illusionist").available);
+    }
 }

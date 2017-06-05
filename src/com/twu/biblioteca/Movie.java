@@ -14,4 +14,5 @@ public class Movie {
         this.rating = rating;
         this.available = available;
     }
+
 }
