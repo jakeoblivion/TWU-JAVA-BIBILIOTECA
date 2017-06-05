@@ -15,10 +15,13 @@ public class Library {
         this.put("Illusionist", new Movie("Illusionist", 2010, "Neil Burger", 9, false));
     }};
 
+    public HashMap<String, User> userList = new HashMap<String, User>() {{
+        this.put("123-4567", new User("123-4567","Jacob","jacob@jacob.com","07222554444", "password1"));
+        this.put("123-4569", new User("123-4569","Rachel","rachel@rachel.com","0715444877", "password2"));
+    }};
+
     public HashMap<String, Book> getAvailableBookList() {
         HashMap<String, Book> availableBookList = new HashMap<>();
-        System.out.println("===== AVAILABLE BOOKS LIST =====");
-        System.out.println("================================");
         for(Book book : bookList.values()) {
             if (book.available) {
                 availableBookList.put(book.title, book);
@@ -30,8 +33,6 @@ public class Library {
 
     public HashMap<String, Movie> getAvailableMovieList() {
         HashMap<String, Movie> availableMovieList = new HashMap<>();
-        System.out.println("===== AVAILABLE MOVIE LIST =====");
-        System.out.println("================================");
         for(Movie movie : movieList.values()) {
             if (movie.available) {
                 availableMovieList.put(movie.name, movie);
@@ -41,20 +42,12 @@ public class Library {
         return availableMovieList;
     }
 
-    public void checkoutItem(String libraryItem) {
-        if(checkoutBook(libraryItem)||checkoutMovie(libraryItem)) {
-            System.out.println("Thank you! Enjoy " + libraryItem);
-        } else {
-            System.out.println("This item is not available.");
-        }
+    public boolean checkoutItem(String libraryItem) {
+        return (checkoutBook(libraryItem)||checkoutMovie(libraryItem));
     }
 
-    public void returnItem(String libraryItem) {
-        if(returnBook(libraryItem)||returnMovie(libraryItem)) {
-            System.out.println("Thank you for returning " + libraryItem);
-        } else {
-            System.out.println("That is not a valid item to return.");
-        }
+    public boolean returnItem(String libraryItem) {
+        return (returnBook(libraryItem)||returnMovie(libraryItem));
     }
 
     private boolean returnBook(String libraryItem) {

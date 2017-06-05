@@ -22,7 +22,6 @@ public class BibliotecaApp {
     }
 
     public static void quit() {
-        System.out.print("Quiting...");
         System.exit(0);
     }
 }

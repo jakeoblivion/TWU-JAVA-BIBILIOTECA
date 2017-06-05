@@ -26,7 +26,7 @@ public class MenuTest {
 
     @Test
     public void printMenuOptionsListBooksQuit() throws Exception {
-        menu.printMenuOptions(menu.generateMenuOptions());
+        menu.generateMenuOptions();
         assertTrue(outContent.toString().contains("List Books"));
         assertTrue(outContent.toString().contains("List Movies"));
         assertTrue(outContent.toString().contains("Checkout Item"));
@@ -35,7 +35,7 @@ public class MenuTest {
     }
 
     @Test
-    public void generateMenuOptionsShouldMapOptionToMethodCommand() {
+    public void generateMenuOptionsListCommands() {
         assertTrue(menu.generateMenuOptions().containsKey("1. List Books"));
     }
 

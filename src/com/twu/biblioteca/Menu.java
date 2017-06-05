@@ -36,29 +36,37 @@ public class Menu {
         return menuOptions;
     }*/
 
-    public void printMenuOptions(Map<String, String> options) {
-        for(Object menuItem : options.keySet().toArray()) {
-            System.out.println(menuItem);
-        }
-    }
 
     public void selectMenuOption(String userInput) {
             switch(userInput) {
                 case "1" :
+                    System.out.println("===== AVAILABLE BOOKS LIST =====");
+                    System.out.println("================================");
                     library.getAvailableBookList();
                     break;
                 case "2" :
+                    System.out.println("===== AVAILABLE MOVIE LIST =====");
+                    System.out.println("================================");
                     library.getAvailableMovieList();
                     break;
                 case "3" :
                     System.out.println("Please specify the title of the book/movie you want to check out:");
-                    library.checkoutItem(UserInput.readUserInput());
+                    if(library.checkoutItem(UserInput.readUserInput())) {
+                        System.out.println("Thank you! Enjoy your book/movie.");
+                    } else {
+                        System.out.println("This item is not available.");
+                    }
                     break;
                 case "4" :
                     System.out.println("Please specify the title of the book/movie you want to return:");
-                    library.returnItem(UserInput.readUserInput());
+                    if(library.returnItem(UserInput.readUserInput())) {
+                        System.out.println("Thank you for returning your book/movie.");
+                    } else {
+                        System.out.println("That is not a valid item to return.");
+                    }
                     break;
                 case "5" :
+                    System.out.print("Quiting...");
                     BibliotecaApp.quit();
                     break;
                 default : System.out.println('"' + userInput + '"' + " is not a valid option!");
@@ -66,4 +74,9 @@ public class Menu {
             }
     }
 
+    private void printMenuOptions(Map<String, String> options) {
+        for(Object menuItem : options.keySet().toArray()) {
+            System.out.println(menuItem);
+        }
+    }
 }
