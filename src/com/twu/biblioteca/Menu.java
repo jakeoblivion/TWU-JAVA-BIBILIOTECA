@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Menu {
     Library library = new Library();
+    AuthenticateUser authenticateUser = new AuthenticateUser();
 
     interface Command {
         void runCommand();
@@ -20,7 +21,7 @@ public class Menu {
         menuOptions.put("2. List Movies", "getAvailableMovieList");
         menuOptions.put("3. Checkout Item", "checkoutItem");
         menuOptions.put("4. Return Item", "returnItem");
-        menuOptions.put("5. Quit", "Quit");
+        menuOptions.put("6. Quit", "Quit");
         printMenuOptions(menuOptions);
         return menuOptions;
     }
@@ -66,6 +67,16 @@ public class Menu {
                     }
                     break;
                 case "5" :
+                    System.out.println("Please enter your username and Password");
+                    if(authenticateUser.userLogin(UserInput.readUserInput(),UserInput.readUserInput())) {
+                        authenticateUser.currentUser.getUserInfo();
+                    }
+                    else {
+                        System.out.println("Incorrect login details.");
+                    }
+                    break;
+
+                case "6" :
                     System.out.print("Quiting...");
                     BibliotecaApp.quit();
                     break;

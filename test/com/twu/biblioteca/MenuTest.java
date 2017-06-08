@@ -54,4 +54,10 @@ public class MenuTest {
         assertTrue(outContent.toString().contains("Inception"));
     }
 
+    @Test
+    public void selectMenuOptionGetUserInfo() throws Exception {
+        menu.generateMenuOptions();
+        menu.selectMenuOption("5");
+        assertTrue(outContent.toString().contains("Jacob"));
+    }
 }

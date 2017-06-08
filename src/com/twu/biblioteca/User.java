@@ -14,4 +14,9 @@ public class User {
         this.phone = phone;
         this.password = password;
     }
+
+    public String getUserInfo() {
+        return name + " " + email + " " + phone;
+    }
+
 }

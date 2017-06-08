@@ -15,20 +15,21 @@ public class Library {
         this.put("Illusionist", new Movie("Illusionist", 2010, "Neil Burger", 9, false));
     }};
 
-    public HashMap<String, User> userList = new HashMap<String, User>() {{
-        this.put("123-4567", new User("123-4567","Jacob","jacob@jacob.com","07222554444", "password1"));
-        this.put("123-4569", new User("123-4569","Rachel","rachel@rachel.com","0715444877", "password2"));
-    }};
-
     public HashMap<String, Book> getAvailableBookList() {
         HashMap<String, Book> availableBookList = new HashMap<>();
         for(Book book : bookList.values()) {
             if (book.available) {
                 availableBookList.put(book.title, book);
-                System.out.println(book.title + " | " + book.author + " | " + book.yearPublished);
             }
         }
+        printAvailableBookList(availableBookList);
         return availableBookList;
+    }
+
+    private void printAvailableBookList(HashMap<String, Book> availableBookList) {
+        for(Book book : bookList.values()) {
+            System.out.println(book.title + " | " + book.author + " | " + book.yearPublished);
+        }
     }
 
     public HashMap<String, Movie> getAvailableMovieList() {
@@ -36,10 +37,16 @@ public class Library {
         for(Movie movie : movieList.values()) {
             if (movie.available) {
                 availableMovieList.put(movie.name, movie);
-                System.out.println(movie.name + " | " + movie.year + " | " + movie.director + " | " + movie.rating);
             }
         }
+        printAvailableMovieList(availableMovieList);
         return availableMovieList;
+    }
+
+    private void printAvailableMovieList(HashMap<String, Movie> availableMovieList) {
+        for(Movie movie : movieList.values()) {
+            System.out.println(movie.name + " | " + movie.year + " | " + movie.director + " | " + movie.rating);
+        }
     }
 
     public boolean checkoutItem(String libraryItem) {
