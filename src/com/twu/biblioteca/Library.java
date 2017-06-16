@@ -27,7 +27,7 @@ public class Library {
     }
 
     private void printAvailableBookList(HashMap<String, Book> availableBookList) {
-        for(Book book : bookList.values()) {
+        for(Book book : availableBookList.values()) {
             System.out.println(book.title + " | " + book.author + " | " + book.yearPublished);
         }
     }
@@ -44,13 +44,29 @@ public class Library {
     }
 
     private void printAvailableMovieList(HashMap<String, Movie> availableMovieList) {
-        for(Movie movie : movieList.values()) {
+        for(Movie movie : availableMovieList.values()) {
             System.out.println(movie.name + " | " + movie.year + " | " + movie.director + " | " + movie.rating);
         }
     }
 
     public boolean checkoutItem(String libraryItem) {
         return (checkoutBook(libraryItem)||checkoutMovie(libraryItem));
+    }
+
+    private boolean checkoutBook(String libraryItem) {
+        if(bookList.containsKey(libraryItem)&&(bookList.get(libraryItem).available)) {
+            bookList.get(libraryItem).available = false;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkoutMovie(String libraryItem) {
+        if(movieList.containsKey(libraryItem)&&(movieList.get(libraryItem).available)) {
+            movieList.get(libraryItem).available = false;
+            return true;
+        }
+        return false;
     }
 
     public boolean returnItem(String libraryItem) {
@@ -68,22 +84,6 @@ public class Library {
     private boolean returnMovie(String libraryItem) {
         if(movieList.containsKey(libraryItem)&&(!(movieList.get(libraryItem).available))) {
             movieList.get(libraryItem).available = true;
-            return true;
-        }
-        return false;
-    }
-
-    private boolean checkoutBook(String libraryItem) {
-        if(bookList.containsKey(libraryItem)&&(bookList.get(libraryItem).available)) {
-            bookList.get(libraryItem).available = false;
-            return true;
-        }
-        return false;
-    }
-
-    private boolean checkoutMovie(String libraryItem) {
-        if(movieList.containsKey(libraryItem)&&(movieList.get(libraryItem).available)) {
-            movieList.get(libraryItem).available = false;
             return true;
         }
         return false;

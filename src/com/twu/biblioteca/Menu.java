@@ -21,7 +21,9 @@ public class Menu {
         menuOptions.put("2. List Movies", "getAvailableMovieList");
         menuOptions.put("3. Checkout Item", "checkoutItem");
         menuOptions.put("4. Return Item", "returnItem");
-        menuOptions.put("6. Quit", "Quit");
+        menuOptions.put("5. My User Information", "getUserInfo");
+        menuOptions.put("6. Checked Out Books", "getCheckedOutBooks");
+        menuOptions.put("7. Quit", "Quit");
         printMenuOptions(menuOptions);
         return menuOptions;
     }
@@ -51,32 +53,39 @@ public class Menu {
                     library.getAvailableMovieList();
                     break;
                 case "3" :
-                    System.out.println("Please specify the title of the book/movie you want to check out:");
-                    if(library.checkoutItem(UserInput.readUserInput())) {
-                        System.out.println("Thank you! Enjoy your book/movie.");
-                    } else {
-                        System.out.println("This item is not available.");
+                    if(authenticateUser.checkIfLoggedIn()) {
+                        System.out.println("Please specify the title of the book/movie you want to check out:");
+                        if (library.checkoutItem(UserInput.readUserInput())) {
+                            System.out.println("Thank you! Enjoy your book/movie.");
+                        } else {
+                            System.out.println("This item is not available.");
+                        }
                     }
                     break;
                 case "4" :
-                    System.out.println("Please specify the title of the book/movie you want to return:");
-                    if(library.returnItem(UserInput.readUserInput())) {
-                        System.out.println("Thank you for returning your book/movie.");
-                    } else {
-                        System.out.println("That is not a valid item to return.");
+                    if(authenticateUser.checkIfLoggedIn()) {
+                        System.out.println("Please specify the title of the book/movie you want to return:");
+                        if (library.returnItem(UserInput.readUserInput())) {
+                            System.out.println("Thank you for returning your book/movie.");
+                        } else {
+                            System.out.println("That is not a valid item to return.");
+                        }
                     }
                     break;
                 case "5" :
-                    System.out.println("Please enter your username and Password");
-                    if(authenticateUser.userLogin(UserInput.readUserInput(),UserInput.readUserInput())) {
-                        authenticateUser.currentUser.getUserInfo();
-                    }
-                    else {
-                        System.out.println("Incorrect login details.");
+                    if(authenticateUser.checkIfLoggedIn()) {
+                        System.out.println(authenticateUser.loggedInUser.getUserInfo());
                     }
                     break;
-
                 case "6" :
+                    if(authenticateUser.checkIfLoggedIn()) {
+                        System.out.println("================================");
+                        System.out.println("The following items have been checked out by you: ");
+                        authenticateUser.loggedInUser.printCheckedOutBooks();
+                        authenticateUser.loggedInUser.printCheckedOutMovies();
+                    }
+                    break;
+                case "7" :
                     System.out.print("Quiting...");
                     BibliotecaApp.quit();
                     break;

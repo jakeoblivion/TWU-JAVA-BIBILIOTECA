@@ -1,23 +1,44 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 
 public class AuthenticateUser {
-    User currentUser;
+    User loggedInUser;
 
+
+    public List<User> userList = new ArrayList<User>() {{
+        this.add(new User("123-4567","Jacob","jacob@jacob.com","07222554444", "password1"));
+        this.add(new User("123-4569","Rachel","rachel@rachel.com","0715444877", "password2"));
+    }};
+    /*
     public HashMap<String, User> userList = new HashMap<String, User>() {{
         this.put("123-4567", new User("123-4567","Jacob","jacob@jacob.com","07222554444", "password1"));
         this.put("123-4569", new User("123-4569","Rachel","rachel@rachel.com","0715444877", "password2"));
-    }};
+    }};*/
 
+    public boolean checkIfLoggedIn() {
+        if (loggedInUser == null) {
+            return checkUserInSystem();
+        }
+        return true;
+    }
 
-    public boolean userLogin(String libraryNumber, String password) {
-        for(User user : userList.values()) {
-            if((user.libraryNumber == libraryNumber)&&(user.password == password)) {
-                currentUser = user;
+    private boolean checkUserInSystem() {
+        System.out.println("Please login first to use this feature." + System.lineSeparator() + "Library Number: ");
+        String libraryNumber = UserInput.readUserInput();
+        System.out.println("Password: ");
+        String password = UserInput.readUserInput();
+
+        for(User user : userList) {
+            if((Objects.equals(user.libraryNumber, libraryNumber))&&(Objects.equals(user.password, password))) {
+                loggedInUser = user;
                 return true;
             }
         }
+        System.out.println("Incorrect login details.");
         return false;
     }
 
