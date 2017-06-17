@@ -34,9 +34,13 @@ public class AuthenticateUserTest {
         systemIn.provideText("password1");
         assertTrue(outContent.toString().contains("Jacob"));
     }
-    
+
     @Test
-    public void returnFalseIfUserExistsNotInSystem() throws Exception {
-        //assertFalse(authenticateUser.userInSystem("123-4568","password3"));
+    public void returnFalseIfUserExistsInSystem() throws Exception {
+        authenticateUser.checkIfLoggedIn();
+        systemIn.provideText("123-4566");
+        systemIn.provideText("password1");
+        assertFalse(outContent.toString().contains("Jacob"));
     }
+
 }

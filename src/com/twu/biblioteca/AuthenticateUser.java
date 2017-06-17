@@ -8,16 +8,10 @@ import java.util.Objects;
 public class AuthenticateUser {
     User loggedInUser;
 
-
     public List<User> userList = new ArrayList<User>() {{
         this.add(new User("123-4567","Jacob","jacob@jacob.com","07222554444", "password1"));
         this.add(new User("123-4569","Rachel","rachel@rachel.com","0715444877", "password2"));
     }};
-    /*
-    public HashMap<String, User> userList = new HashMap<String, User>() {{
-        this.put("123-4567", new User("123-4567","Jacob","jacob@jacob.com","07222554444", "password1"));
-        this.put("123-4569", new User("123-4569","Rachel","rachel@rachel.com","0715444877", "password2"));
-    }};*/
 
     public boolean checkIfLoggedIn() {
         if (loggedInUser == null) {
@@ -33,7 +27,7 @@ public class AuthenticateUser {
         String password = UserInput.readUserInput();
 
         for(User user : userList) {
-            if((Objects.equals(user.libraryNumber, libraryNumber))&&(Objects.equals(user.password, password))) {
+            if((Objects.equals(user.getLibraryNumber(), libraryNumber))&&(Objects.equals(user.getPassword(), password))) {
                 loggedInUser = user;
                 return true;
             }

@@ -36,7 +36,7 @@ public class MenuTest {
 
     @Test
     public void generateMenuOptionsListCommands() {
-        assertTrue(menu.generateMenuOptions().containsKey("1. List Books"));
+        assertTrue(outContent.toString().contains("1. List Books"));
     }
 
     @Test

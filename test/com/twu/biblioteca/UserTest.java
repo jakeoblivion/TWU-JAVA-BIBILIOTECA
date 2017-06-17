@@ -10,7 +10,7 @@ public class UserTest {
 
     @Test
     public void returnNameEmailPhone() throws Exception {
-        assertThat(user.getUserInfo(), is("Jacob jacob@jacob.com 077777777"));
+        assertThat(user.getUserInfo(), is("Name: Jacob | Email: jacob@jacob.com | Telephone: 077777777"));
     }
 
 }
