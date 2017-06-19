@@ -1,11 +1,24 @@
 package com.twu.biblioteca;
 
-import java.util.*;
-
 public class Menu {
+    private boolean running = true;
     Library library = new Library();
-
     AuthenticateUser authenticateUser = new AuthenticateUser();
+
+    public boolean isRunning() {
+        return running;
+    }
+
+    public void quit() {
+        running = false;
+        System.out.print("Quiting...");
+    }
+
+    public static void generateWelcomeMessage() {
+        System.out.println("################################");
+        System.out.println("#### Welcome to Biblioteca! ####");
+        System.out.println("################################");
+    }
 
     public void generateMenuOptions(){
         System.out.println("----------------------------------------------------");
@@ -66,8 +79,7 @@ public class Menu {
                     }
                     break;
                 case "7" :
-                    System.out.print("Quiting...");
-                    BibliotecaApp.quit();
+                    quit();
                     break;
                 default : System.out.println('"' + userInput + '"' + " is not a valid option!");
                     break;

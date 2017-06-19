@@ -8,6 +8,7 @@ import java.util.Objects;
 public class AuthenticateUser {
     User loggedInUser;
 
+
     public List<User> userList = new ArrayList<User>() {{
         this.add(new User("123-4567","Jacob","jacob@jacob.com","07222554444", "password1"));
         this.add(new User("123-4569","Rachel","rachel@rachel.com","0715444877", "password2"));

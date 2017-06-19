@@ -5,23 +5,15 @@ import java.io.IOException;
 public class BibliotecaApp {
 
     public static void main(String[] args) throws IOException {
-        BibliotecaApp.generateWelcomeMessage();
         Menu menu = new Menu();
+        menu.generateWelcomeMessage();
         menu.generateMenuOptions();
 
-        while(true) {
-            menu.selectMenuOption(UserInput.readUserInput());
-            menu.generateMenuOptions();
+        while(menu.isRunning()) {
+                menu.selectMenuOption(UserInput.readUserInput());
+            if(menu.isRunning()) {
+                menu.generateMenuOptions();
+            }
         }
-    }
-
-    public static void generateWelcomeMessage() {
-        System.out.println("################################");
-        System.out.println("#### Welcome to Biblioteca! ####");
-        System.out.println("################################");
-    }
-
-    public static void quit() {
-        System.exit(0);
     }
 }

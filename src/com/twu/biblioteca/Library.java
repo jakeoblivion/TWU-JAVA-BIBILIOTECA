@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 import java.util.*;
 
 public class Library {
-
     public HashMap<String, Book> bookList = new HashMap<String, Book>() {{
         this.put("Harry Potter", new Book("Harry Potter", "JK Rowling", 2000, true));
         this.put("Lord of the Rings", new Book("Lord of the Rings", "JR Tolkien", 2001, true));
@@ -15,18 +14,17 @@ public class Library {
         this.put("Illusionist", new Movie("Illusionist", 2010, "Neil Burger", 9, false));
     }};
 
-    Map<String, Book> checkedOutBooks = new HashMap<>();
-    Map<String, Movie> checkedOutMovies = new HashMap<>();
+    private Map<Book, String> checkedOutBooks = new HashMap<>();
+    private Map<Movie, String> checkedOutMovies = new HashMap<>();
 
     public void printCheckedOutBooks() {
-        for(Book book : checkedOutBooks.values()) {
+        for(Book book : checkedOutBooks.keySet()) {
             System.out.println(book.getTitle());
-
         }
     }
 
     public void printCheckedOutMovies() {
-        for(Movie movie : checkedOutMovies.values()) {
+        for(Movie movie : checkedOutMovies.keySet()) {
             System.out.println(movie.getName());
         }
     }
@@ -68,11 +66,11 @@ public class Library {
     public boolean checkoutItem(String userID, String libraryItem) {
         if (bookList.containsKey(libraryItem) && (bookList.get(libraryItem).isAvailable())) {
             bookList.get(libraryItem).setAvailable(false);
-            checkedOutBooks.put(userID, bookList.get(libraryItem));
+            checkedOutBooks.put(bookList.get(libraryItem), userID);
             return true;
         } else if (movieList.containsKey(libraryItem) && (movieList.get(libraryItem).isAvailable())) {
             movieList.get(libraryItem).setAvailable(false);
-            checkedOutMovies.put(userID, movieList.get(libraryItem));
+            checkedOutMovies.put(movieList.get(libraryItem),userID);
             return true;
         }
         return false;

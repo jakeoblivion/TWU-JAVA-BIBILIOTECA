@@ -24,19 +24,4 @@ public class BibliotecaAppTest {
         System.setOut(null);
     }
 
-    @Test
-    public void displaysWelcomeMessage() throws Exception {
-        BibliotecaApp bibliotecaApp = new BibliotecaApp();
-        bibliotecaApp.generateWelcomeMessage();
-        assertTrue(outContent.toString().contains("#### Welcome to Biblioteca! ####"));
-    }
-
-    @Test
-    public void quitApplicationWithMessage() throws Exception {
-        BibliotecaApp bibliotecaApp = new BibliotecaApp();
-        //bibliotecaApp.quit();
-        //assertEquals("Quiting...",outContent.toString());
-    }
-
-
 }

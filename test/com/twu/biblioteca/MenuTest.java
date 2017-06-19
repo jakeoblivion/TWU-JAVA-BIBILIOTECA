@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class MenuTest {
@@ -40,24 +41,16 @@ public class MenuTest {
     }
 
     @Test
-    public void selectMenuOptionListBooksShouldReturnBookList() throws Exception {
-        menu.generateMenuOptions();
-        menu.selectMenuOption("1");
-        assertTrue(outContent.toString().contains("Harry Potter"));
-        assertTrue(outContent.toString().contains("Lord of the Rings"));
+    public void displaysWelcomeMessage() throws Exception {
+        BibliotecaApp bibliotecaApp = new BibliotecaApp();
+        menu.generateWelcomeMessage();
+        assertTrue(outContent.toString().contains("#### Welcome to Biblioteca! ####"));
     }
 
     @Test
-    public void selectMenuOptionListMoviesShouldReturnMovieList() throws Exception {
-        menu.generateMenuOptions();
-        menu.selectMenuOption("2");
-        assertTrue(outContent.toString().contains("Inception"));
-    }
-
-    @Test
-    public void selectMenuOptionGetUserInfo() throws Exception {
-        menu.generateMenuOptions();
-        menu.selectMenuOption("5");
-        assertTrue(outContent.toString().contains("Jacob"));
+    public void quitApplicationWithMessage() throws Exception {
+        BibliotecaApp bibliotecaApp = new BibliotecaApp();
+        menu.quit();
+        assertEquals("Quiting...",outContent.toString());
     }
 }
