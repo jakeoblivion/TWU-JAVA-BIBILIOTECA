@@ -4,15 +4,19 @@ public class Movie {
     private String name;
     private int year;
     private String director;
-    private int rating;
+    private String rating;
     private boolean available;
 
-    public Movie(String name, int year, String director, int rating, boolean available) {
+    public Movie(String name, int year, String director, String rating, boolean available) {
         this.name = name;
         this.year = year;
         this.director = director;
         this.rating = rating;
         this.available = available;
+    }
+
+    public Movie(String name, int year, String director, boolean available) {
+        this(name,year,director,"Unrated",available);
     }
 
     public boolean isAvailable() {
@@ -35,7 +39,7 @@ public class Movie {
         return director;
     }
 
-    public int getRating() {
+    public String getRating() {
         return rating;
     }
 }
