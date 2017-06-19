@@ -37,19 +37,18 @@ public class MenuTest {
 
     @Test
     public void generateMenuOptionsListCommands() {
+        menu.generateMenuOptions();
         assertTrue(outContent.toString().contains("1. List Books"));
     }
 
     @Test
     public void displaysWelcomeMessage() throws Exception {
-        BibliotecaApp bibliotecaApp = new BibliotecaApp();
         menu.generateWelcomeMessage();
         assertTrue(outContent.toString().contains("#### Welcome to Biblioteca! ####"));
     }
 
     @Test
     public void quitApplicationWithMessage() throws Exception {
-        BibliotecaApp bibliotecaApp = new BibliotecaApp();
         menu.quit();
         assertEquals("Quiting...",outContent.toString());
     }
